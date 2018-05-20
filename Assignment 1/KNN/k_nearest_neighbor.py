@@ -66,7 +66,7 @@ class KNearestNeighbor(object):
         dists = np.zeros((num_test, num_train))
         for i in range(num_test):
             for j in range(num_train):
-                dist = np.sqrt(np.sum(np.square(self.X_train[j, :] - X[i, :]), axis=1))
+                dist = np.sqrt(np.sum(np.square(self.X_train[j, :] - X[i, :]), axis=0))
                 dists[i, j] = dist
         return dists
 

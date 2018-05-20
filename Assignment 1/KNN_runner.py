@@ -10,17 +10,17 @@ Xte, Yte = get_test(PATH)
 Xtr_rows = Xtr.reshape(Xtr.shape[0], 32 * 32 * 3)
 Xte_rows = Xte.reshape(Xte.shape[0], 32 * 32 * 3)
 
-Xval_rows = Xtr_rows[:1000, :]
-Yval = Ytr[:1000]
-Xtr_rows = Xtr_rows[1000:, :]
-Ytr = Ytr[1000:]
-
 nn = KNearestNeighbor()
 nn.train(Xtr_rows, Ytr)
 
 validation_accuracies = []
 
 for k in [1, 3, 5, 10, 20, 50, 100]:
-    Yval_predict = nn.predict(Xval_rows, k)
-    print('k: %i accuracy: %f' % (k, np.mean(Yval_predict == Yval)))
-    validation_accuracies.append((k, np.mean(Yval_predict == Yval)))
+    Yte_predict = nn.predict(Xte_rows, k, num_loops=2)
+    print('k: %i accuracy: %f' % (k, np.mean(Yte_predict == Yte)))
+    validation_accuracies.append((k, np.mean(Yte_predict == Yte)))
+
+with open('./dataStore/knn_acc.txt', 'w') as file:
+    for line in validation_accuracies:
+        line = str(line) + '\r'
+        file.write(line)
