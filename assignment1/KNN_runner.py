@@ -1,5 +1,5 @@
-from KNN.cifair_10_pickle import *
-from KNN.k_nearest_neighbor import KNearestNeighbor
+from assignment1.KNN.cifair_10_pickle import *
+from assignment1.KNN.k_nearest_neighbor import KNearestNeighbor
 import numpy as np
 
 PATH = '../cifar-10-dataset'
