@@ -77,7 +77,6 @@ class KNearestNeighbor(object):
         return Ypred
 
 
-# test
 if __name__ == '__main__':
 
     Xtr, Ytr = get_train(PATH)
