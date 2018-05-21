@@ -1,4 +1,4 @@
-from assignment1.KNN.cifair_10_pickle import *
+from assignment1.utils.cifair_10_pickle import *
 from assignment1.KNN.k_nearest_neighbor import KNearestNeighbor
 import numpy as np
 
@@ -16,7 +16,7 @@ nn.train(Xtr_rows, Ytr)
 validation_accuracies = []
 
 for k in [1, 3, 5, 10, 20, 50, 100]:
-    Yte_predict = nn.predict(Xte_rows, k, num_loops=2)
+    Yte_predict = nn.predict(Xte_rows, k, num_loops=0)
     print('k: %i accuracy: %f' % (k, np.mean(Yte_predict == Yte)))
     validation_accuracies.append((k, np.mean(Yte_predict == Yte)))
 
