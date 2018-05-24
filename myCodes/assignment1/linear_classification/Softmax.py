@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def L(X, y, W):
+def L_softmax(X, y, W):
     f = W.dot(X)
     f -= np.max(f, axis=0)
 
@@ -13,7 +13,6 @@ def L(X, y, W):
     y_idx.append(y)
     y_idx.append(idx)
 
-    p_correct = p[y_idx]
-    loss = np.sum(-np.log(p_correct))
+    loss = np.sum(-np.log(p[y_idx]))
 
     return loss
