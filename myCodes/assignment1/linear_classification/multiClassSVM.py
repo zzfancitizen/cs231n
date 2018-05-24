@@ -51,6 +51,7 @@ def L(X, y, W):
     delta = 1.0
     scores = W.dot(X)
 
+    # generate index for getting correct scores in train
     idx = np.arange(y.shape[0]).reshape(-1, ).tolist()
     y_idx.append(y)
     y_idx.append(idx)
