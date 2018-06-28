@@ -76,7 +76,7 @@ class TwoLayerNet(object):
         # Store the result in the scores variable, which should be an array of      #
         # shape (N, C).                                                             #
         #############################################################################
-        h_output = np.max(0, X.dot(W1) + b1)
+        h_output = np.maximum(0, X.dot(W1) + b1)
         scores = h_output.dot(W2) + b2  # shape (N, C)
         #############################################################################
         #                              END OF YOUR CODE                             #
@@ -229,9 +229,36 @@ class TwoLayerNet(object):
         ###########################################################################
         # TODO: Implement this function; it should be VERY simple!                #
         ###########################################################################
-        pass
+        h = np.maximum(0, X.dot(self.params['W1']) + self.params['b1'])
+        scores = h.dot(self.params['W2']) + self.params['b2']
+        y_pred = np.argmax(scores, axis=1)
         ###########################################################################
         #                              END OF YOUR CODE                           #
         ###########################################################################
 
         return y_pred
+
+
+if __name__ == '__main__':
+    input_size = 4
+    hidden_size = 10
+    num_classes = 3
+    num_inputs = 5
+
+
+    def init_toy_model():
+        np.random.seed(0)
+        return TwoLayerNet(input_size, hidden_size, num_classes, std=1e-1)
+
+
+    def init_toy_data():
+        np.random.seed(1)
+        X = 10 * np.random.randn(num_inputs, input_size)
+        y = np.array([0, 1, 2, 2, 1])
+        return X, y
+
+
+    net = init_toy_model()
+    X, y = init_toy_data()
+
+    scores = net.loss(X)
